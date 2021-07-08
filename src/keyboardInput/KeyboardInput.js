@@ -1,7 +1,5 @@
 export class KeyboardInput {
 
-    // animation = new ControlsImageAnimation()
-
 
     events = {
         keydown: 'keydown',

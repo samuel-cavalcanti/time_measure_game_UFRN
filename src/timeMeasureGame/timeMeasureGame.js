@@ -1,5 +1,5 @@
 import { Ball } from "../ball/ball.js";
-import { EndGameMessage } from "../score/EndGameMessage.js";
+import { EndGameMessage } from "../EndGameMessage/EndGameMessage.js";
 import { Color } from "../utils/Color.js";
 import { Observer } from "../utils/observer.js";
 import { Position2D } from "../utils/Position2D.js";
@@ -50,6 +50,7 @@ export class TimeMeasureGame {
             return
 
         this.setWaitingState()
+        this.notifyRender()
 
         this.addBall()
 
@@ -57,6 +58,12 @@ export class TimeMeasureGame {
 
 
         this.notifyRender()
+    }
+
+    restart() {
+        this.setWaitingState()
+        this.notifyRender()
+        this.start()
     }
 
     end() {
@@ -115,9 +122,25 @@ export class TimeMeasureGame {
 
     addBall() {
         const radius = 0.1
-        this.state.currentBall = new Ball(Position2D.rand(), new Color().rand(), radius)
+
+        if (this.state.currentBall === undefined)
+            this.state.currentBall = new Ball(Position2D.rand(), new Color().rand(), radius)
+        else
+            this.state.currentBall = this.randomBall(radius)
+
+      
         this.state.objectsToRender.push(this.state.currentBall)
         this.state.timeOfBallIsAddedInMilliseconds = new Date().getTime() //Return the number of milliseconds since 1970/01/01:
+    }
+
+    randomBall(radius) {
+        let randomColor = new Color().rand()
+        while (this.state.currentBall.color === randomColor)
+            randomColor = new Color().rand()
+
+
+        return new Ball(Position2D.rand(), randomColor, radius)
+        
     }
 
     removeBall() {

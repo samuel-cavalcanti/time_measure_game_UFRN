@@ -1,5 +1,4 @@
 
-import { Ball } from "./ball/ball.js"
 import GameAudio from "./gameAudio/gameAudio.js"
 import { ControlsImageAnimation } from "./keyboardInput/ControlsImageAnimation.js"
 import { KeyboardInput } from "./keyboardInput/KeyboardInput.js"
@@ -34,7 +33,10 @@ keyboard.keydownObservers.push(timeMeasureGame.keydownObserver)
 
 
 const startGameButton = document.getElementById('start-game-button')
-startGameButton.onclick = () => timeMeasureGame.start()
+startGameButton.onclick = () => {
+    timeMeasureGame.restart()
+    startGameButton.innerHTML = 'restart'
+}
 
 
 

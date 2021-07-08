@@ -56,7 +56,7 @@ export class Screen {
 
         this.context2D.clearRect(0, 0, this.width, this.height)
 
-      
+
 
         for (const object2D of this.objects2D)
             object2D.draw(this)
@@ -68,7 +68,7 @@ export class Screen {
     }
 
     toRender(objects2D) {
-        if (!objects2D)
+        if (objects2D === undefined)
             this.disable()
 
         this.objects2D = objects2D
