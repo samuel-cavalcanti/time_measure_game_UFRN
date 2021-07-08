@@ -29,19 +29,21 @@ export class KeyboardInput {
     }
 
     keyup(event) {
-        console.log('keyup', event.key)
-     
+        const key = event.key.toLowerCase();
+        console.log('keyup',key)
 
-        this.notifyAll(event.key, this.keyupObservers)
+
+        this.notifyAll(key, this.keyupObservers)
     }
 
     keydown(event) {
-        console.log('keydown', event.key)
+        const key = event.key.toLowerCase();
+        console.log('keydown', key)
 
-      
 
 
-        this.notifyAll(event.key, this.keydownObservers)
+
+        this.notifyAll(key.toLowerCase(), this.keydownObservers)
     }
 
 
