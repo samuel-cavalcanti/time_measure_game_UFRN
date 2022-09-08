@@ -73,7 +73,7 @@ export class TimeMeasureGame {
         const mean = sum / this.state.reactions.length
         const meanReactionsInSeconds = mean / 1000
 
-        this.state.objectsToRender = [new EndGameMessage(this.state.score, 10, meanReactionsInSeconds)]
+        this.state.objectsToRender = [new EndGameMessage(this.state.score, this.startNumberOfTries, meanReactionsInSeconds)]
 
         this.state.gameStatus = this.status.waiting
     }
